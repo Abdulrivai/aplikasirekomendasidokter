@@ -8,18 +8,21 @@ class OnBoardingController extends GetxController {
   final List<Map<String, String>> onboardingData = [
     {
       'image': 'assets/banneronboard1.png',
-      'title': 'Judul Pertama',
-      'description': 'Deskripsi onboarding pertama.',
+      'title': 'Konsultasi Tepat dengan Dokter Spesialis',
+      'description':
+          'Dapatkan rekomendasi dokter spesialis yang sesuai dengan keluhan kesehatan Anda. Chatbot kami akan membantu menemukan pilihan terbaik dalam hitungan detik!.',
     },
     {
       'image': 'assets/banneronboard1.png',
-      'title': 'Judul Kedua',
-      'description': 'Deskripsi onboarding kedua.',
+      'title': 'Cepat, Mudah, dan Akurat',
+      'description':
+          'Tak perlu bingung memilih dokter! Jawab beberapa pertanyaan singkat, dan chatbot pintar kami akan memberikan rekomendasi yang sesuai dengan kebutuhan Anda.',
     },
     {
       'image': 'assets/banneronboard1.png',
-      'title': 'Judul Ketiga',
-      'description': 'Deskripsi onboarding ketiga.',
+      'title': 'Akses Kesehatan dalam Genggaman',
+      'description':
+          'Cari dokter spesialis kapan saja dan di mana saja. Rekomendasi yang dipersonalisasi membuat pengalaman konsultasi lebih praktis dan efisien.',
     },
   ];
 

@@ -12,7 +12,24 @@ class OnBoardingView extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text('OnBoardingView'),
+        title: Row(
+          mainAxisSize: MainAxisSize.min, // Agar sesuai ukuran kontennya
+          children: [
+            Image.asset(
+              'assets/hmlogo.png', // Ganti dengan path logo PNG Anda
+              height: 32, // Sesuaikan ukuran logo
+            ),
+            const SizedBox(width: 8), // Jarak antara logo dan teks
+            const Text(
+              'Healtmate', // Ganti dengan nama aplikasi Anda
+              style: TextStyle(
+                fontSize: 24,
+                fontWeight: FontWeight.bold,
+                color: Colors.blue, // Membuat teks tebal
+              ),
+            ),
+          ],
+        ),
         centerTitle: true,
       ),
       body: Column(
@@ -30,16 +47,19 @@ class OnBoardingView extends StatelessWidget {
                     SizedBox(height: 20),
                     Text(
                       controller.onboardingData[index]['title']!,
-                      style:
-                          TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
+                      style: TextStyle(
+                        fontSize: 18,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.blue,
+                      ),
                     ),
-                    SizedBox(height: 10),
+                    SizedBox(height: 4),
                     Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 20.0),
                       child: Text(
                         controller.onboardingData[index]['description']!,
                         textAlign: TextAlign.center,
-                        style: TextStyle(fontSize: 16),
+                        style: TextStyle(fontSize: 12),
                       ),
                     ),
                   ],
@@ -79,21 +99,57 @@ class OnBoardingView extends StatelessWidget {
                         onPressed: controller.currentIndex.value == 0
                             ? null
                             : controller.previousPage,
-                        child: Text("Back"),
+                        style: TextButton.styleFrom(
+                          foregroundColor: Colors.blue, // Warna teks biru
+                        ),
+                        child: Text(
+                          "Back",
+                          style: TextStyle(
+                            color: Colors.blue, // Warna teks biru
+                            fontWeight: FontWeight
+                                .bold, // (Opsional) Tambahkan ketebalan teks
+                          ),
+                        ),
                       ),
                     ),
                     TextButton(
                       onPressed: controller.skipToEnd,
-                      child: Text("Skip"),
+                      style: TextButton.styleFrom(
+                        foregroundColor: Colors.blue, // Warna teks biru
+                      ),
+                      child: Text(
+                        "Skip",
+                        style: TextStyle(
+                          color: Colors.blue, // Warna teks biru
+                          fontWeight: FontWeight
+                              .bold, // (Opsional) Menambahkan ketebalan teks
+                        ),
+                      ),
                     ),
                   ],
                 ),
                 SizedBox(height: 10),
                 ElevatedButton(
                   onPressed: controller.nextPage,
-                  child: Text("Mulai Tanyakan Dokter"),
                   style: ElevatedButton.styleFrom(
-                    minimumSize: Size(double.infinity, 50),
+                    backgroundColor: Colors.blue, // Warna tombol
+                    foregroundColor: Colors.white, // Warna teks
+                    minimumSize:
+                        Size(double.infinity, 50), // Lebar penuh, tinggi 50
+                    shape: RoundedRectangleBorder(
+                      borderRadius:
+                          BorderRadius.circular(12), // Sudut melengkung
+                    ),
+                    elevation: 6, // Efek bayangan
+                    shadowColor:
+                        Colors.black.withOpacity(0.3), // Warna bayangan
+                  ),
+                  child: Text(
+                    "Mulai Tanyakan Dokter",
+                    style: TextStyle(
+                      fontSize: 16,
+                      fontWeight: FontWeight.bold,
+                    ),
                   ),
                 ),
               ],
