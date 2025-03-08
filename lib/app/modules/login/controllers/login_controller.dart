@@ -33,18 +33,18 @@ class LoginController extends GetxController {
       Get.offNamed('/home');
     } on FirebaseAuthException catch (e) {
       if (e.code == 'user-not-found') {
-        print('No user found for that email.');
         Get.snackbar("Error", "No user found for that email.");
+        throw 'No user found for that email.';
       } else if (e.code == 'wrong-password') {
-        print('Wrong password provided for that user.');
         Get.snackbar("Error", "Wrong password provided for that user.");
+        throw 'Wrong password provided for that user.';
       } else if (e.code == 'invalid-credential') {
-        print(
-            'The supplied auth credential is incorrect, malformed, or has expired.');
         Get.snackbar("Error",
             "The supplied auth credential is incorrect, malformed, or has expired.");
+        throw 'The supplied auth credential is incorrect, malformed, or has expired.';
       } else {
-        print('Error: $e');
+        Get.snackbar("Error", "An error occurred while login.");
+        throw 'An error occurred while login.';
       }
     }
   }

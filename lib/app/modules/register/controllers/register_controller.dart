@@ -34,14 +34,19 @@ class RegisterController extends GetxController {
       Get.offNamed('/login');
     } on FirebaseAuthException catch (e) {
       if (e.code == 'weak-password') {
+        Get.snackbar("Error", "The password provided is too weak.");
         throw 'The password provided is too weak.';
       } else if (e.code == 'email-already-in-use') {
+        Get.snackbar("Error", "The account already exists for that email.");
         throw 'The account already exists for that email.';
       } else if (e.code == 'invalid-password') {
+        Get.snackbar("Error", "The password is invalid.");
         throw 'The password is invalid.';
       } else if (e.code == 'invalid-email') {
+        Get.snackbar("Error", "The email is invalid.");
         throw 'The email is invalid.';
       } else {
+        Get.snackbar("Error", "An error occurred while creating the user.");
         throw 'An error occurred while creating the user.';
       }
     }
