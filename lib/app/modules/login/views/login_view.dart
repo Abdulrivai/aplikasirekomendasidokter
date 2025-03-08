@@ -40,6 +40,14 @@ class LoginView extends GetView<LoginController> {
                 child: const Text('Login'),
               ),
             ),
+            const SizedBox(height: 24),
+            SizedBox(
+              width: double.infinity,
+              child: ElevatedButton(
+                onPressed: () => controller.register(),
+                child: const Text('Register'),
+              ),
+            ),
           ],
         ),
       ),

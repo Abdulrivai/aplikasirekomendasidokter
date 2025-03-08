@@ -36,6 +36,8 @@ class OnBoardingController extends GetxController {
         duration: Duration(milliseconds: 300),
         curve: Curves.easeInOut,
       );
+    } else {
+      Get.offNamed('/login');
     }
   }
 
