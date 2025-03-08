@@ -1,23 +1,23 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get/get.dart';
 
 class HomeController extends GetxController {
-  //TODO: Implement HomeController
+  //Firebase Initialize
+  final FirebaseAuth _auth = FirebaseAuth.instance;
 
-  final count = 0.obs;
+  //listener untuk mengetahui apakah user sudah login atau belum
   @override
   void onInit() {
+    _auth.authStateChanges().listen((User? user) {
+      if (user == null) {
+        Get.offNamed('/login');
+      }
+    });
     super.onInit();
   }
 
-  @override
-  void onReady() {
-    super.onReady();
+  void logout() async {
+    await _auth.signOut();
+    Get.offNamed('/login');
   }
-
-  @override
-  void onClose() {
-    super.onClose();
-  }
-
-  void increment() => count.value++;
 }
