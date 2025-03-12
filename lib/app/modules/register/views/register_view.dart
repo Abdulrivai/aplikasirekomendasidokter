@@ -47,8 +47,8 @@ class RegisterView extends GetView<RegisterController> {
                       width: MediaQuery.of(context).size.width * 0.9,
                       child: ClipRRect(
                         borderRadius: BorderRadius.circular(12),
-                        child: Image.asset(
-                          'assets/bannerregister.png',
+                        child: Image.network(
+                          'https://firebasestorage.googleapis.com/v0/b/bank-sampah-1ef03.appspot.com/o/caridokter%2Fbannerregister.png?alt=media&token=bd0b4ce3-8564-4f18-9b27-79dc3af1ec80',
                           fit: BoxFit.cover,
                         ),
                       ),

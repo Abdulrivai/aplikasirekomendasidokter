@@ -7,19 +7,22 @@ class OnBoardingController extends GetxController {
 
   final List<Map<String, String>> onboardingData = [
     {
-      'image': 'assets/banneronboard1.png',
+      'image':
+          'https://firebasestorage.googleapis.com/v0/b/bank-sampah-1ef03.appspot.com/o/caridokter%2Fonboardbanner.png?alt=media&token=5b129488-14ff-48e5-aa7d-d7a6ae35a581',
       'title': 'Konsultasi Tepat dengan Dokter Spesialis',
       'description':
           'Dapatkan rekomendasi dokter spesialis yang sesuai dengan keluhan kesehatan Anda. Chatbot kami akan membantu menemukan pilihan terbaik dalam hitungan detik!.',
     },
     {
-      'image': 'assets/banneronboard1.png',
+      'image':
+          'https://firebasestorage.googleapis.com/v0/b/bank-sampah-1ef03.appspot.com/o/caridokter%2Fonboardbanner.png?alt=media&token=5b129488-14ff-48e5-aa7d-d7a6ae35a581',
       'title': 'Cepat, Mudah, dan Akurat',
       'description':
           'Tak perlu bingung memilih dokter! Jawab beberapa pertanyaan singkat, dan chatbot pintar kami akan memberikan rekomendasi yang sesuai dengan kebutuhan Anda.',
     },
     {
-      'image': 'assets/banneronboard1.png',
+      'image':
+          'https://firebasestorage.googleapis.com/v0/b/bank-sampah-1ef03.appspot.com/o/caridokter%2Fonboardbanner.png?alt=media&token=5b129488-14ff-48e5-aa7d-d7a6ae35a581',
       'title': 'Akses Kesehatan dalam Genggaman',
       'description':
           'Cari dokter spesialis kapan saja dan di mana saja. Rekomendasi yang dipersonalisasi membuat pengalaman konsultasi lebih praktis dan efisien.',

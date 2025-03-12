@@ -44,8 +44,8 @@ class LoginView extends GetView<LoginController> {
                     width: MediaQuery.of(context).size.width * 0.9,
                     child: ClipRRect(
                       borderRadius: BorderRadius.circular(12),
-                      child: Image.asset(
-                        'assets/loginbanner.png', // Path ke banner PNG
+                      child: Image.network(
+                        'https://firebasestorage.googleapis.com/v0/b/bank-sampah-1ef03.appspot.com/o/caridokter%2Floginbanner.png?alt=media&token=85a8a576-9fdc-45e3-bf38-c4ac928b94f5',
                         fit: BoxFit.cover,
                       ),
                     ),
