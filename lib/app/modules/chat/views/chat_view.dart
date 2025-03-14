@@ -14,11 +14,33 @@ class ChatView extends GetView<ChatController> {
         title: const Text('ChatView'),
         centerTitle: true,
       ),
-      body: Obx(() => DashChat(
-            currentUser: controller.currentUser,
-            onSend: controller.onSend,
-            messages: controller.messages.value,
+      body: Obx(
+        () => DashChat(
+          currentUser: controller.currentUser,
+          onSend: controller.onSend,
+          messages: controller.messages.value,
+          typingUsers: controller.typingUsers.value,
+          inputOptions: InputOptions(sendOnEnter: true),
+          messageListOptions: MessageListOptions(
+              chatFooterBuilder: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 10),
+            child: Row(
+              children: [
+                // button akhiri chat
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 8),
+                  child: ElevatedButton(
+                    onPressed: () {
+                      controller.messages.clear();
+                    },
+                    child: const Text('Akhiri Chat'),
+                  ),
+                ),
+              ],
+            ),
           )),
+        ),
+      ),
     );
   }
 }
