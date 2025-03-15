@@ -54,6 +54,12 @@ class ChatController extends GetxController {
     ).onError(
       (error, stackTrace) {
         print('Error: $error');
+        final newChat = ChatMessage(
+          text: 'Maaf, Sepertinya ada kesalahan',
+          user: chatbot,
+          createdAt: DateTime.now(),
+        );
+        messages.insert(0, newChat);
         typingUsers.remove(chatbot);
       },
     ).whenComplete(

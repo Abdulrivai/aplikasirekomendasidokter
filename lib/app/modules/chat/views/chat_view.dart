@@ -27,15 +27,17 @@ class ChatView extends GetView<ChatController> {
             child: Row(
               children: [
                 // button akhiri chat
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 8),
-                  child: ElevatedButton(
-                    onPressed: () {
-                      controller.messages.clear();
-                    },
-                    child: const Text('Akhiri Chat'),
-                  ),
-                ),
+                controller.messages.isEmpty
+                    ? const SizedBox()
+                    : Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 8),
+                        child: ElevatedButton(
+                          onPressed: () {
+                            controller.messages.clear();
+                          },
+                          child: const Text('Akhiri Chat'),
+                        ),
+                      ),
               ],
             ),
           )),
