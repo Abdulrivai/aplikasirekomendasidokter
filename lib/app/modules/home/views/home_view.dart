@@ -31,11 +31,9 @@ class HomeView extends GetView<HomeController> {
         mainScreenWidget: SingleChildScrollView(
           child: Column(
             children: [
-              // Stack untuk banner dan kartu yang mengambang
               Stack(
                 alignment: Alignment.topCenter,
-                clipBehavior:
-                    Clip.none, // Agar kartu bisa keluar dari batas Stack
+                clipBehavior: Clip.none,
                 children: [
                   AspectRatio(
                     aspectRatio: 16 / 9,
@@ -54,9 +52,9 @@ class HomeView extends GetView<HomeController> {
                       },
                     ),
                   ),
-                  // Kartu informasi dokter spesialis mengambang di atas banner
+                  //
                   Positioned(
-                    top: 180, // Mengatur kartu agar sedikit di atas banner
+                    top: 180,
                     left: 20,
                     right: 20,
                     child: Card(
@@ -97,9 +95,7 @@ class HomeView extends GetView<HomeController> {
                   ),
                 ],
               ),
-              const SizedBox(
-                  height:
-                      60), // Jarak untuk mencegah tumpang tindih dengan konten di bawah
+              const SizedBox(height: 60),
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 16.0),
                 child: GridView.builder(
@@ -156,16 +152,11 @@ class HomeView extends GetView<HomeController> {
                       padding: const EdgeInsets.symmetric(
                           horizontal: 16, vertical: 8),
                       child: Container(
-                        width: double
-                            .infinity, // Ubah sesuai kebutuhan (contoh: 300 untuk lebar spesifik)
-                        height:
-                            110, // Ubah sesuai kebutuhan (contoh: 150 untuk lebih tinggi)
+                        width: double.infinity,
+                        height: 110,
                         decoration: BoxDecoration(
                           gradient: LinearGradient(
-                            colors: [
-                              Colors.blue.shade50,
-                              Colors.white
-                            ], // Gradien halus
+                            colors: [Colors.blue.shade50, Colors.white],
                             begin: Alignment.topLeft,
                             end: Alignment.bottomRight,
                           ),
@@ -174,7 +165,6 @@ class HomeView extends GetView<HomeController> {
                         child: Row(
                           crossAxisAlignment: CrossAxisAlignment.center,
                           children: [
-                            // Gambar
                             Padding(
                               padding: const EdgeInsets.all(10),
                               child: news["image"]!.isNotEmpty
@@ -182,8 +172,7 @@ class HomeView extends GetView<HomeController> {
                                       borderRadius: BorderRadius.circular(8),
                                       child: Image.network(
                                         news["image"]!,
-                                        width:
-                                            80, // Ubah ukuran gambar sesuai kebutuhan
+                                        width: 80,
                                         height: 80,
                                         fit: BoxFit.cover,
                                         errorBuilder:
@@ -197,7 +186,6 @@ class HomeView extends GetView<HomeController> {
                                   : const Icon(Icons.image_not_supported,
                                       size: 80, color: Colors.grey),
                             ),
-                            // Konten teks
                             Expanded(
                               child: Padding(
                                 padding:
@@ -210,8 +198,7 @@ class HomeView extends GetView<HomeController> {
                                       news["title"]!,
                                       style: const TextStyle(
                                         fontWeight: FontWeight.bold,
-                                        fontSize:
-                                            16, // Ubah ukuran font sesuai kebutuhan
+                                        fontSize: 16,
                                         color: Colors.black87,
                                       ),
                                       maxLines: 2,
@@ -221,8 +208,7 @@ class HomeView extends GetView<HomeController> {
                                     Text(
                                       '${news["publisher"]} • ${news["date"]}',
                                       style: TextStyle(
-                                        fontSize:
-                                            12, // Ubah ukuran font sesuai kebutuhan
+                                        fontSize: 12,
                                         color: Colors.grey.shade600,
                                         fontStyle: FontStyle.italic,
                                       ),
@@ -231,7 +217,6 @@ class HomeView extends GetView<HomeController> {
                                 ),
                               ),
                             ),
-                            // Tombol bookmark
                             Padding(
                               padding: const EdgeInsets.all(10),
                               child: IconButton(
