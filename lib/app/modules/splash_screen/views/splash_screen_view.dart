@@ -7,6 +7,10 @@ class SplashScreenView extends GetView<SplashScreenController> {
 
   @override
   Widget build(BuildContext context) {
+    Future.delayed(Duration(seconds: 3), () {
+      Get.offNamed('/on-boarding');
+    });
+
     return Scaffold(
       body: Center(
         child: SizedBox(

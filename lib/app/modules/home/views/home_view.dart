@@ -241,7 +241,11 @@ class HomeView extends GetView<HomeController> {
             ],
           ),
         ),
-        floatingWidget: Image.asset('assets/floatingicons.png', height: 120),
+        floatingWidget: InkWell(
+            onTap: () {
+              Get.toNamed('/chat');
+            },
+            child: Image.asset('assets/floatingicons.png', height: 120)),
         floatingWidgetHeight: 120,
         floatingWidgetWidth: 120,
       ),
