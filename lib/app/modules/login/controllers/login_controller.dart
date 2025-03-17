@@ -12,8 +12,15 @@ class LoginController extends GetxController {
   @override
   void onInit() {
     _auth.authStateChanges().listen((User? user) {
-      if (user != null) {
+      if (user != null && !user.isAnonymous) {
         Get.offNamed('/home');
+      } else if (user != null && user.isAnonymous) {
+        Get.offNamed('/home');
+        Future.delayed(Duration(minutes: 30), () async {
+          await FirebaseAuth.instance.signOut();
+          Get.offAllNamed('/login');
+          Get.snackbar("Info", "Sesi Anda Berakhir.");
+        });
       }
     });
     super.onInit();
@@ -42,6 +49,23 @@ class LoginController extends GetxController {
         Get.snackbar("Error",
             "The supplied auth credential is incorrect, malformed, or has expired.");
         throw 'The supplied auth credential is incorrect, malformed, or has expired.';
+      } else {
+        Get.snackbar("Error", "An error occurred while login.");
+        throw 'An error occurred while login.';
+      }
+    }
+  }
+
+  void guestLogin() async {
+    try {
+      await FirebaseAuth.instance.signInAnonymously();
+      Get.snackbar("Success", "Login berhasil sebagai Tamu");
+      Get.offNamed('/home');
+      // print anonymous details
+    } on FirebaseAuthException catch (e) {
+      if (e.code == 'operation-not-allowed') {
+        Get.snackbar("Error", "Anonymous accounts are not enabled");
+        throw 'Anonymous accounts are not enabled';
       } else {
         Get.snackbar("Error", "An error occurred while login.");
         throw 'An error occurred while login.';

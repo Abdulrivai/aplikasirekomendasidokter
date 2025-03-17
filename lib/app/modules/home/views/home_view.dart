@@ -244,6 +244,7 @@ class HomeView extends GetView<HomeController> {
         floatingWidget: InkWell(
             onTap: () {
               Get.toNamed('/chat');
+              // controller.logout();
             },
             child: Image.asset('assets/floatingicons.png', height: 120)),
         floatingWidgetHeight: 120,

@@ -119,14 +119,16 @@ class LoginView extends GetView<LoginController> {
                   SizedBox(
                     width: double.infinity,
                     child: ElevatedButton.icon(
-                      onPressed: () {},
+                      onPressed: () {
+                        controller.guestLogin();
+                      },
                       icon: Image.asset(
                         'assets/googleicons.png',
                         width: 24,
                         height: 24,
                       ),
                       label: const Text(
-                        'Masuk Lewat Google',
+                        'Masuk Sebagai Tamu',
                         style: TextStyle(
                             fontSize: 16,
                             fontWeight: FontWeight.bold,
