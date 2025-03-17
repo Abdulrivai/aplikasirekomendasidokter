@@ -42,7 +42,8 @@ dependencies:
   floating_draggable_widget: ^2.3.0
   dash_chat_2: ^0.0.21
   http: ^1.3.0
-
+  excel: ^2.1.0
+  
 dev_dependencies:
   flutter_test:
     sdk: flutter
