@@ -25,6 +25,14 @@ class HomeView extends GetView<HomeController> {
           ],
         ),
         centerTitle: true,
+        actions: [
+          IconButton(
+            icon: const Icon(Icons.logout, color: Colors.blue),
+            onPressed: () {
+              controller.logout();
+            },
+          ),
+        ],
       ),
       body: FloatingDraggableWidget(
         autoAlign: true,

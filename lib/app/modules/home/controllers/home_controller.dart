@@ -10,8 +10,20 @@ class HomeController extends GetxController {
 
   @override
   void onInit() {
-    super.onInit();
+    _auth.authStateChanges().listen((User? user) {
+      if (user != null && !user.isAnonymous) {
+        Get.offNamed('/home');
+      } else if (user != null && user.isAnonymous) {
+        Get.offNamed('/home');
+        Future.delayed(Duration(minutes: 30), () async {
+          await FirebaseAuth.instance.signOut();
+          Get.offAllNamed('/login');
+          Get.snackbar("Info", "Sesi Anda Berakhir.");
+        });
+      }
+    });
     loadExcelData();
+    super.onInit();
   }
 
   Future<void> loadExcelData() async {
