@@ -25,6 +25,14 @@ class HomeView extends GetView<HomeController> {
           ],
         ),
         centerTitle: true,
+        actions: [
+          IconButton(
+            icon: const Icon(Icons.logout, color: Colors.blue),
+            onPressed: () {
+              controller.logout();
+            },
+          ),
+        ],
       ),
       body: FloatingDraggableWidget(
         autoAlign: true,
@@ -244,6 +252,7 @@ class HomeView extends GetView<HomeController> {
         floatingWidget: InkWell(
             onTap: () {
               Get.toNamed('/chat');
+              // controller.logout();
             },
             child: Image.asset('assets/floatingicons.png', height: 120)),
         floatingWidgetHeight: 120,
