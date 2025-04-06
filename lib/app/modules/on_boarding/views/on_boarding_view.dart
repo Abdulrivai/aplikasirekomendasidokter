@@ -43,23 +43,36 @@ class OnBoardingView extends StatelessWidget {
                 return Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Image.asset(controller.onboardingData[index]['image']!),
-                    SizedBox(height: 20),
+                    Image.network(
+                      controller.onboardingData[index]['image']!,
+                      // Tidak ada height atau fit, gunakan ukuran asli
+                      loadingBuilder: (context, child, loadingProgress) {
+                        if (loadingProgress == null) return child;
+                        return const Center(child: CircularProgressIndicator());
+                      },
+                      errorBuilder: (context, error, stackTrace) {
+                        return const Center(
+                          child: Icon(Icons.broken_image,
+                              size: 50, color: Colors.grey),
+                        );
+                      },
+                    ),
+                    const SizedBox(height: 20),
                     Text(
                       controller.onboardingData[index]['title']!,
-                      style: TextStyle(
+                      style: const TextStyle(
                         fontSize: 18,
                         fontWeight: FontWeight.bold,
                         color: Colors.blue,
                       ),
                     ),
-                    SizedBox(height: 4),
+                    const SizedBox(height: 4),
                     Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 20.0),
                       child: Text(
                         controller.onboardingData[index]['description']!,
                         textAlign: TextAlign.center,
-                        style: TextStyle(fontSize: 12),
+                        style: const TextStyle(fontSize: 12),
                       ),
                     ),
                   ],

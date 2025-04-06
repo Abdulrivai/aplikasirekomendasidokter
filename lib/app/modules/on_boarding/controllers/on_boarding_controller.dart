@@ -11,7 +11,7 @@ class OnBoardingController extends GetxController {
           'https://firebasestorage.googleapis.com/v0/b/bank-sampah-1ef03.appspot.com/o/caridokter%2Fonboardbanner.png?alt=media&token=5b129488-14ff-48e5-aa7d-d7a6ae35a581',
       'title': 'Konsultasi Tepat dengan Dokter Spesialis',
       'description':
-          'Dapatkan rekomendasi dokter spesialis yang sesuai dengan keluhan kesehatan Anda. Chatbot kami akan membantu menemukan pilihan terbaik dalam hitungan detik!.',
+          'Dapatkan rekomendasi dokter spesialis yang sesuai dengan keluhan kesehatan Anda. Chatbot kami akan membantu menemukan pilihan terbaik dalam hitungan detik!',
     },
     {
       'image':

@@ -123,7 +123,7 @@ class LoginView extends GetView<LoginController> {
                         controller.guestLogin();
                       },
                       icon: Image.asset(
-                        'assets/googleicons.png',
+                        'assets/sebagaitamu.png',
                         width: 24,
                         height: 24,
                       ),
