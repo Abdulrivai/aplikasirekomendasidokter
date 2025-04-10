@@ -16,7 +16,7 @@ class ChatView extends GetView<ChatController> {
             Image.asset('assets/hmlogo.png', height: 32),
             const SizedBox(width: 8),
             const Text(
-              'Healtmate',
+              'HealthMate',
               style: TextStyle(
                   fontSize: 24,
                   fontWeight: FontWeight.bold,

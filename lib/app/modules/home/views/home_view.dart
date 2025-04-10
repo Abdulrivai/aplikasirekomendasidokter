@@ -16,7 +16,7 @@ class HomeView extends GetView<HomeController> {
             Image.asset('assets/hmlogo.png', height: 32),
             const SizedBox(width: 8),
             const Text(
-              'Healtmate',
+              'HealthMate',
               style: TextStyle(
                   fontSize: 24,
                   fontWeight: FontWeight.bold,
@@ -123,6 +123,12 @@ class HomeView extends GetView<HomeController> {
                       'assets/rs.png',
                       'assets/ambulan.png',
                     ];
+                    List<String> popupImages = [
+                      'assets/popup1.png',
+                      'assets/popup1.png',
+                      'assets/popup1.png',
+                      'assets/popup1.png',
+                    ];
                     List<String> categoryNames = [
                       'Booking',
                       'Obat',
@@ -132,23 +138,95 @@ class HomeView extends GetView<HomeController> {
                     return Column(
                       children: [
                         InkWell(
-                          onTap: () {},
+                          onTap: () {
+                            showGeneralDialog(
+                              context: context,
+                              barrierDismissible:
+                                  true, // Klik di luar untuk menutup
+                              barrierLabel: 'Dismiss',
+                              barrierColor: Colors.black
+                                  .withOpacity(0.5), // Latar belakang gelap
+                              transitionDuration: const Duration(
+                                  milliseconds: 300), // Durasi animasi
+                              pageBuilder:
+                                  (context, animation, secondaryAnimation) {
+                                return Center(
+                                  child: Image.asset(
+                                    popupImages[index],
+                                    height: 300,
+                                    width: 300,
+                                    fit: BoxFit.contain,
+                                  ),
+                                );
+                              },
+                              transitionBuilder: (context, animation,
+                                  secondaryAnimation, child) {
+                                return FadeTransition(
+                                  opacity: CurvedAnimation(
+                                    parent: animation,
+                                    curve: Curves.easeInOut,
+                                  ),
+                                  child: ScaleTransition(
+                                    scale: Tween<double>(begin: 0.5, end: 1.0)
+                                        .animate(
+                                      CurvedAnimation(
+                                        parent: animation,
+                                        curve: Curves.easeInOut,
+                                      ),
+                                    ),
+                                    child: child,
+                                  ),
+                                );
+                              },
+                            );
+                          },
                           child: Image.asset(categories[index],
                               height: 60, width: 60),
                         ),
                         const SizedBox(height: 5),
-                        Text(categoryNames[index],
-                            style: const TextStyle(
-                                fontSize: 12, fontWeight: FontWeight.bold)),
+                        Text(
+                          categoryNames[index],
+                          style: const TextStyle(
+                              fontSize: 12, fontWeight: FontWeight.bold),
+                        ),
                       ],
                     );
                   },
                 ),
               ),
-              const SizedBox(height: 20),
+              const SizedBox(height: 2),
+              Padding(
+                padding: const EdgeInsets.fromLTRB(16, 16, 16, 8),
+                child: Row(
+                  mainAxisAlignment:
+                      MainAxisAlignment.start, // Memastikan konten rata kiri
+                  children: [
+                    Image.asset(
+                      'assets/beritakesehatan.png', // Ganti dengan path ikon PNG Anda
+                      width: 32, // Sesuaikan ukuran ikon
+                      height: 32,
+                    ),
+                    SizedBox(width: 8), // Jarak antara ikon dan teks
+                    Text(
+                      'Berita Kesehatan Hari Ini',
+                      textAlign: TextAlign.left, // Teks rata kiri
+                      style: const TextStyle(
+                        fontSize: 18,
+                        fontWeight: FontWeight.bold,
+                        color: Color.fromARGB(255, 0, 0, 0),
+                        letterSpacing: 0.5,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
               Obx(() {
                 if (controller.newsList.isEmpty) {
-                  return const Center(child: CircularProgressIndicator());
+                  return const Center(
+                    child: CircularProgressIndicator(
+                      color: Colors.blueAccent,
+                    ),
+                  );
                 }
                 return ListView.builder(
                   shrinkWrap: true,
@@ -159,87 +237,278 @@ class HomeView extends GetView<HomeController> {
                     return Padding(
                       padding: const EdgeInsets.symmetric(
                           horizontal: 16, vertical: 8),
-                      child: Container(
-                        width: double.infinity,
-                        height: 110,
-                        decoration: BoxDecoration(
-                          gradient: LinearGradient(
-                            colors: [Colors.blue.shade50, Colors.white],
-                            begin: Alignment.topLeft,
-                            end: Alignment.bottomRight,
-                          ),
-                          borderRadius: BorderRadius.circular(15),
-                        ),
-                        child: Row(
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          children: [
-                            Padding(
-                              padding: const EdgeInsets.all(10),
-                              child: news["image"]!.isNotEmpty
-                                  ? ClipRRect(
-                                      borderRadius: BorderRadius.circular(8),
-                                      child: Image.network(
-                                        news["image"]!,
-                                        width: 80,
-                                        height: 80,
-                                        fit: BoxFit.cover,
-                                        errorBuilder:
-                                            (context, error, stackTrace) {
-                                          return const Icon(
-                                              Icons.image_not_supported,
-                                              size: 80);
-                                        },
+                      child: MouseRegion(
+                        child: GestureDetector(
+                          onTap: () {
+                            showDialog(
+                              context: context,
+                              builder: (BuildContext context) {
+                                return Dialog(
+                                  backgroundColor: Colors.transparent,
+                                  child: Stack(
+                                    children: [
+                                      Container(
+                                        width: 400,
+                                        padding: const EdgeInsets.all(20),
+                                        decoration: BoxDecoration(
+                                          color: Colors.white,
+                                          borderRadius:
+                                              BorderRadius.circular(15),
+                                          boxShadow: [
+                                            BoxShadow(
+                                              color:
+                                                  Colors.black.withOpacity(0.2),
+                                              blurRadius: 10,
+                                              offset: const Offset(0, 5),
+                                            ),
+                                          ],
+                                        ),
+                                        child: Column(
+                                          mainAxisSize: MainAxisSize.min,
+                                          children: [
+                                            ClipRRect(
+                                              borderRadius:
+                                                  BorderRadius.circular(10),
+                                              child: Image.asset(
+                                                'assets/popup1.png', // Ganti dengan nama file PNG Anda
+                                                fit: BoxFit.contain,
+                                                height: 300,
+                                                width: 350,
+                                                errorBuilder: (context, error,
+                                                    stackTrace) {
+                                                  return Container(
+                                                    height: 300,
+                                                    width: 350,
+                                                    color: Colors.grey.shade200,
+                                                    child: const Icon(
+                                                      Icons.image_not_supported,
+                                                      size: 100,
+                                                      color: Colors.grey,
+                                                    ),
+                                                  );
+                                                },
+                                              ),
+                                            ),
+                                            const SizedBox(height: 20),
+                                            ElevatedButton(
+                                              onPressed: () {
+                                                Navigator.of(context).pop();
+                                              },
+                                              style: ElevatedButton.styleFrom(
+                                                backgroundColor:
+                                                    Colors.blue.shade600,
+                                                shape: RoundedRectangleBorder(
+                                                  borderRadius:
+                                                      BorderRadius.circular(10),
+                                                ),
+                                              ),
+                                              child: const Text(
+                                                'Close',
+                                                style: TextStyle(
+                                                    color: Colors.white),
+                                              ),
+                                            ),
+                                          ],
+                                        ),
                                       ),
-                                    )
-                                  : const Icon(Icons.image_not_supported,
-                                      size: 80, color: Colors.grey),
-                            ),
-                            Expanded(
-                              child: Padding(
-                                padding:
-                                    const EdgeInsets.symmetric(vertical: 10),
-                                child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: [
-                                    Text(
-                                      news["title"]!,
-                                      style: const TextStyle(
-                                        fontWeight: FontWeight.bold,
-                                        fontSize: 16,
-                                        color: Colors.black87,
+                                      Positioned(
+                                        right: 0,
+                                        top: 0,
+                                        child: IconButton(
+                                          icon: const Icon(Icons.close,
+                                              color: Colors.grey),
+                                          onPressed: () {
+                                            Navigator.of(context).pop();
+                                          },
+                                        ),
                                       ),
-                                      maxLines: 2,
-                                      overflow: TextOverflow.ellipsis,
-                                    ),
-                                    const SizedBox(height: 6),
-                                    Text(
-                                      '${news["publisher"]} • ${news["date"]}',
-                                      style: TextStyle(
-                                        fontSize: 12,
-                                        color: Colors.grey.shade600,
-                                        fontStyle: FontStyle.italic,
-                                      ),
-                                    ),
-                                  ],
+                                    ],
+                                  ),
+                                );
+                              },
+                            );
+                          },
+                          child: AnimatedContainer(
+                            duration: const Duration(milliseconds: 200),
+                            width: double.infinity,
+                            height: 120,
+                            decoration: BoxDecoration(
+                              gradient: LinearGradient(
+                                colors: [Colors.blue.shade100, Colors.white],
+                                begin: Alignment.topLeft,
+                                end: Alignment.bottomRight,
+                              ),
+                              borderRadius: BorderRadius.circular(20),
+                              boxShadow: [
+                                BoxShadow(
+                                  color: Colors.grey.withOpacity(0.3),
+                                  spreadRadius: 2,
+                                  blurRadius: 8,
+                                  offset: const Offset(0, 4),
                                 ),
+                              ],
+                              border: Border.all(
+                                color: Colors.blue.shade200,
+                                width: 1,
                               ),
                             ),
-                            Padding(
-                              padding: const EdgeInsets.all(10),
-                              child: IconButton(
-                                icon: const Icon(Icons.bookmark_border,
-                                    color: Colors.blue),
-                                onPressed: () {
-                                  ScaffoldMessenger.of(context).showSnackBar(
-                                    SnackBar(
-                                        content:
-                                            Text('Saved: ${news["title"]}')),
-                                  );
-                                },
-                              ),
+                            child: Row(
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              children: [
+                                Padding(
+                                  padding: const EdgeInsets.all(12),
+                                  child: Hero(
+                                    tag: 'news_image_$index',
+                                    child: news["image"]!.isNotEmpty
+                                        ? ClipRRect(
+                                            borderRadius:
+                                                BorderRadius.circular(12),
+                                            child: Image.network(
+                                              news["image"]!,
+                                              width: 90,
+                                              height: 90,
+                                              fit: BoxFit.cover,
+                                              loadingBuilder: (context, child,
+                                                  loadingProgress) {
+                                                if (loadingProgress == null)
+                                                  return child;
+                                                return Container(
+                                                  width: 90,
+                                                  height: 90,
+                                                  color: Colors.grey.shade200,
+                                                  child: const Center(
+                                                    child:
+                                                        CircularProgressIndicator(),
+                                                  ),
+                                                );
+                                              },
+                                              errorBuilder:
+                                                  (context, error, stackTrace) {
+                                                return Container(
+                                                  width: 90,
+                                                  height: 90,
+                                                  decoration: BoxDecoration(
+                                                    color: Colors.grey.shade200,
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            12),
+                                                  ),
+                                                  child: const Icon(
+                                                    Icons.image_not_supported,
+                                                    size: 50,
+                                                    color: Colors.grey,
+                                                  ),
+                                                );
+                                              },
+                                            ),
+                                          )
+                                        : Container(
+                                            width: 90,
+                                            height: 90,
+                                            decoration: BoxDecoration(
+                                              color: Colors.grey.shade200,
+                                              borderRadius:
+                                                  BorderRadius.circular(12),
+                                            ),
+                                            child: const Icon(
+                                              Icons.image_not_supported,
+                                              size: 50,
+                                              color: Colors.grey,
+                                            ),
+                                          ),
+                                  ),
+                                ),
+                                Expanded(
+                                  child: Padding(
+                                    padding: const EdgeInsets.symmetric(
+                                        vertical: 12),
+                                    child: Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
+                                      children: [
+                                        Text(
+                                          news["title"]!,
+                                          style: const TextStyle(
+                                            fontWeight: FontWeight.bold,
+                                            fontSize: 17,
+                                            color: Colors.black87,
+                                            letterSpacing: 0.2,
+                                          ),
+                                          maxLines: 2,
+                                          overflow: TextOverflow.ellipsis,
+                                        ),
+                                        const SizedBox(height: 8),
+                                        Row(
+                                          children: [
+                                            Container(
+                                              padding:
+                                                  const EdgeInsets.symmetric(
+                                                horizontal: 6,
+                                                vertical: 2,
+                                              ),
+                                              decoration: BoxDecoration(
+                                                color: Colors.blue.shade600,
+                                                borderRadius:
+                                                    BorderRadius.circular(10),
+                                              ),
+                                              child: Text(
+                                                news["publisher"]!,
+                                                style: const TextStyle(
+                                                  fontSize: 11,
+                                                  color: Colors.white,
+                                                  fontWeight: FontWeight.w500,
+                                                ),
+                                              ),
+                                            ),
+                                            const SizedBox(width: 6),
+                                            Expanded(
+                                              child: Text(
+                                                news["date"]!,
+                                                style: TextStyle(
+                                                  fontSize: 12,
+                                                  color: Colors.grey.shade600,
+                                                  fontStyle: FontStyle.italic,
+                                                ),
+                                                maxLines: 1,
+                                                overflow: TextOverflow.ellipsis,
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                ),
+                                Padding(
+                                  padding: const EdgeInsets.all(12),
+                                  child: IconButton(
+                                    icon: AnimatedSwitcher(
+                                      duration:
+                                          const Duration(milliseconds: 200),
+                                      child: Icon(
+                                        Icons.bookmark_border,
+                                        key: ValueKey(news["title"]),
+                                        color: Colors.blue.shade700,
+                                        size: 28,
+                                      ),
+                                    ),
+                                    onPressed: () {
+                                      ScaffoldMessenger.of(context)
+                                          .showSnackBar(
+                                        SnackBar(
+                                          content:
+                                              Text('Saved: ${news["title"]}'),
+                                          backgroundColor: Colors.blue.shade600,
+                                        ),
+                                      );
+                                    },
+                                  ),
+                                ),
+                              ],
                             ),
-                          ],
+                          ),
                         ),
                       ),
                     );
